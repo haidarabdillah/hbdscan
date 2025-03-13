@@ -51,6 +51,12 @@ services:
       - "traefik.http.routers.backend.tls=true"
       - "traefik.http.routers.backend.tls.certresolver=myresolver"
       - "traefik.http.services.backend.loadbalancer.server.port=4000"
+      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowOriginList=https://www.haidar.fun"
+      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowMethods=OPTIONS, GET, POST, PUT, DELETE, PATCH"
+      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowCredentials=true"
+      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowHeaders=DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Content-Type,Authorization"
+      - "traefik.http.routers.backend.middlewares=backend-cors"`
+
       
     logging:
       driver: "json-file"
