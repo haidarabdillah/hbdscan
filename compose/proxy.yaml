@@ -21,7 +21,7 @@ services:
       - "--entryPoints.websecure.forwardedHeaders.insecure"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
-      - "--certificatesresolvers.myresolver.acme.email=support@levccscan.com"
+      - "--certificatesresolvers.myresolver.acme.email=support@haidar.fun"
       - "--certificatesresolvers.myresolver.acme.storage=/acme.json"
     labels:
       - "traefik.enable=true"

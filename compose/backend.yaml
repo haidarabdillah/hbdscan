@@ -46,7 +46,7 @@ services:
       - db:database
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`api.levccscan.com`)"
+      - "traefik.http.routers.backend.rule=Host(`api.haidar.fun`)"
       - "traefik.http.routers.backend.entrypoints=websecure"
       - "traefik.http.routers.backend.tls=true"
       - "traefik.http.routers.backend.tls.certresolver=myresolver"
@@ -65,11 +65,11 @@ services:
       -  ../config/visualizer.env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.visualizer.rule=Host(`visualizer.levccscan.com`)"
+      - "traefik.http.routers.visualizer.rule=Host(`visualizer.haidar.fun`)"
       - "traefik.http.routers.visualizer.entrypoints=websecure"
       - "traefik.http.routers.visualizer.tls=true"
       - "traefik.http.routers.visualizer.tls.certresolver=myresolver"
-      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowOriginList=http://www.levccscan.com"
+      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowOriginList=http://www.haidar.fun"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowCredentials=true"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowHeaders=DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,x-csrf-token"
@@ -120,12 +120,12 @@ services:
       -  ../config/stats/stats.env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.stats.rule=Host(`stats.levccscan.com`)"
+      - "traefik.http.routers.stats.rule=Host(`stats.haidar.fun`)"
       - "traefik.http.routers.stats.entrypoints=websecure"
       - "traefik.http.routers.stats.tls=true"
       - "traefik.http.routers.stats.tls.certresolver=myresolver"
       - "traefik.http.services.stats.loadbalancer.server.port=8050"
-      - "traefik.http.middlewares.stats-cors.headers.accessControlAllowOriginList=https://www.levccscan.com"
+      - "traefik.http.middlewares.stats-cors.headers.accessControlAllowOriginList=https://www.haidar.fun"
       - "traefik.http.middlewares.stats-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
       - "traefik.http.middlewares.stats-cors.headers.accessControlAllowCredentials=true"
       - "traefik.http.routers.stats.middlewares=stats-cors"
