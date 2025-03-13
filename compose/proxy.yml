@@ -1,0 +1,18 @@
+services:
+  traefik:
+    restart: always
+    image: traefik:v3.0.1
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../config/traefik/dyn.yml:/etc/traefik/dyn.yml
+      - ../config/traefik/traefik.yml:/etc/traefik/traefik.yml
+      - ../config/traefik/acme.json:/letsencrypt/acme.json
+    labels:
+      - "traefik.enable=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"

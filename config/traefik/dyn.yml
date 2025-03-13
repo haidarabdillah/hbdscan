@@ -1,0 +1,8 @@
+tls:
+  certificatesResolvers:
+    myresolver:
+      acme:
+        email: "support@haidar.fun"
+        storage: "/letsencrypt/acme.json"
+        httpChallenge:
+          entryPoint: "web"

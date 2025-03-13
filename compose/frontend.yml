@@ -1,0 +1,29 @@
+services:
+  explorer:
+    image: devopsnusatech/explorer-beone:prod
+    restart: always
+    depends_on:
+      - backend
+    env_file:
+      - ../config/explorer.env
+    labels:
+      - "traefik.enable=true"
+      # Listen on port 80 ("web") and match the Host rule
+      - "traefik.http.routers.hdbscan-explorer.rule=Host(`haidar.fun`)"
+      - "traefik.http.routers.hdbscan-explorer.entryPoints=web"
+      # Redirect HTTP -> HTTPS
+      - "traefik.http.routers.hdbscan-explorer.middlewares=hdbscan-explorer-https-redirect"
+      # Middleware that redirects scheme from HTTP to HTTPS
+      - "traefik.http.middlewares.hdbscan-explorer-https-redirect.redirectscheme.scheme=https"
+      # Listen on port 443 ("websecure") and match the same Host
+      - "traefik.http.routers.hdbscan-explorer-secure.rule=Host(`haidar.fun`)"
+      - "traefik.http.routers.hdbscan-explorer-secure.entryPoints=websecure"
+      - "traefik.http.routers.hdbscan-explorer-secure.tls=true"
+      # Use your ACME certificate resolver
+      - "traefik.http.routers.hdbscan-explorer-secure.tls.certresolver=myresolver"
+      # The internal container port your app listens on (e.g. 80)
+      - "traefik.http.services.hdbscan-explorer.loadbalancer.server.port=3000"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"

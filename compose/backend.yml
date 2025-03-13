@@ -1,11 +1,9 @@
-version: '3.6'
-
 services:
   redis:
     image: redis:alpine
     restart: always
     volumes:
-      - redis_data:/data
+      - redis-data:/data
     logging:
       driver: "json-file"
       options:
@@ -16,7 +14,7 @@ services:
     restart: always
     command: postgres -c 'max_connections=200'
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
     env_file:
       - ../config/blockscout/postgres.env
     healthcheck:
@@ -50,15 +48,16 @@ services:
       - "traefik.http.routers.backend.entrypoints=websecure"
       - "traefik.http.routers.backend.tls=true"
       - "traefik.http.routers.backend.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowOriginList=https://haidar.fun"
+      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
+      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowCredentials=true"
+      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowHeaders=DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,x-csrf-token"
+      - "traefik.http.routers.backend.middlewares=backend-cors"
       - "traefik.http.services.backend.loadbalancer.server.port=4000"
-      
-      
     logging:
       driver: "json-file"
       options:
         max-size: "50m"
-    ports:
-      - "4000:4000"
 
   visualizer:
     image: ghcr.io/blockscout/visualizer:v0.2.1
@@ -71,12 +70,12 @@ services:
       - "traefik.http.routers.visualizer.entrypoints=websecure"
       - "traefik.http.routers.visualizer.tls=true"
       - "traefik.http.routers.visualizer.tls.certresolver=myresolver"
-      - "traefik.http.routers.visualizer.middlewares=visualizer-cors"
-      - "traefik.http.services.visualizer.loadbalancer.server.port=8050"
-      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowOriginList=https://www.haidar.fun"
+      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowOriginList=https://haidar.fun"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowCredentials=true"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowHeaders=DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,x-csrf-token"
+      - "traefik.http.routers.visualizer.middlewares=visualizer-cors"
+      - "traefik.http.services.visualizer.loadbalancer.server.port=8050"
     logging:
       driver: "json-file"
       options:
@@ -97,7 +96,7 @@ services:
       - backend
     command: postgres -c 'max_connections=200'
     volumes:
-      - stats_db_data:/var/lib/postgresql/data
+      - stats-db-data:/var/lib/postgresql/data
     env_file:
       - ../config/stats/postgres.env
     healthcheck:
@@ -127,7 +126,7 @@ services:
       - "traefik.http.routers.stats.tls=true"
       - "traefik.http.routers.stats.tls.certresolver=myresolver"
       - "traefik.http.services.stats.loadbalancer.server.port=8050"
-      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowOriginList=https://www.haidar.fun"
+      - "traefik.http.middlewares.stats-cors.headers.accessControlAllowOriginList=https://haidar.fun"
       - "traefik.http.middlewares.stats-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
       - "traefik.http.middlewares.stats-cors.headers.accessControlAllowCredentials=true"
       - "traefik.http.routers.stats.middlewares=stats-cors"
@@ -137,8 +136,6 @@ services:
         max-size: "50m"
 
 volumes:
-  swapdb_data:
-  node_data:
-  redis_data:
-  db_data:
-  stats_db_data:
+  redis-data:
+  db-data:
+  stats-db-data:
