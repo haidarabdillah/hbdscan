@@ -1,6 +1,6 @@
 services:
   explorer:
-    image: ghcr.io/ghcr.io/blockscout/frontend:latest
+    image: devopsnusatech/explorer-beone:prod
     restart: always
     depends_on:
       - backend
