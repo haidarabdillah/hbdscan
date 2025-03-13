@@ -31,7 +31,7 @@ services:
         max-size: "50m"
 
   backend:
-    image: blockscout/blockscout:latest
+    image: devopsnusatech/blockscout:v6.7.2-beta
     restart: always
     depends_on:
       - db
