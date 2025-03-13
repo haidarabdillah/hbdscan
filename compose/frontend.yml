@@ -1,6 +1,6 @@
 services:
   explorer:
-    image: ghcr.io/blockscout/frontend:review-chakra-v3
+    image: ghcr.io/ghcr.io/blockscout/frontend:latest
     restart: always
     depends_on:
       - backend
