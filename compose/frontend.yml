@@ -1,6 +1,6 @@
 services:
   explorer:
-    image: ghcr.io/ghcr.io/blockscout/frontend:latest
+    image: ghcr.io/ghcr.io/blockscout/frontend:v1.33.2
     restart: always
     depends_on:
       - backend
