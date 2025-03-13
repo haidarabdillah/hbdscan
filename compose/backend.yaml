@@ -51,6 +51,12 @@ services:
       - "traefik.http.routers.backend.tls=true"
       - "traefik.http.routers.backend.tls.certresolver=myresolver"
       - "traefik.http.services.backend.loadbalancer.server.port=4000"
+      - "traefik.http.middlewares.stats-cors.headers.accessControlAllowOriginList=*"
+      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
+      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowCredentials=true"
+      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowHeaders=DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,x-csrf-token"
+      - "traefik.http.routers.visualizer.middlewares=visualizer-cors"
+
     logging:
       driver: "json-file"
       options:
@@ -69,7 +75,7 @@ services:
       - "traefik.http.routers.visualizer.entrypoints=websecure"
       - "traefik.http.routers.visualizer.tls=true"
       - "traefik.http.routers.visualizer.tls.certresolver=myresolver"
-      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowOriginList=http://www.haidar.fun"
+      - "traefik.http.middlewares.stats-cors.headers.accessControlAllowOriginList=*"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowCredentials=true"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowHeaders=DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,x-csrf-token"
