@@ -51,7 +51,7 @@ services:
       - "traefik.http.middlewares.backend-cors.headers.accessControlAllowOriginList=https://haidar.fun"
       - "traefik.http.middlewares.backend-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
       - "traefik.http.middlewares.backend-cors.headers.accessControlAllowCredentials=true"
-      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowHeaders=DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,x-csrf-token"
+      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowHeaders=DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,x-csrf-token,updated-gas-oracle"
       - "traefik.http.routers.backend.middlewares=backend-cors"
       - "traefik.http.services.backend.loadbalancer.server.port=4000"
     logging:
