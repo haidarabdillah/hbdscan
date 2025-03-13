@@ -59,7 +59,7 @@ services:
       - "4000:4000"
 
   visualizer:
-    image: ghcr.io/blockscout/visualizer:latest
+    image: ghcr.io/blockscout/visualizer:v0.2.1
     restart: always
     env_file:
       -  ../config/visualizer.env
@@ -81,7 +81,7 @@ services:
         max-size: "50m"
 
   sig-provider:
-    image: ghcr.io/blockscout/sig-provider:latest
+    image: ghcr.io/blockscout/sig-provider:v1.1.1
     restart: always
     logging:
       driver: "json-file"
@@ -110,7 +110,7 @@ services:
         max-size: "50m"
 
   stats:
-    image: ghcr.io/blockscout/stats:latest
+    image: ghcr.io/blockscout/stats:v2.1.1
     restart: always
     depends_on:
       - "stats-db"
