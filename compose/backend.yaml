@@ -127,10 +127,10 @@ services:
       - "traefik.http.routers.stats.tls=true"
       - "traefik.http.routers.stats.tls.certresolver=myresolver"
       - "traefik.http.services.stats.loadbalancer.server.port=8050"
-      # - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowOriginList=https://www.haidar.fun"
-      # - "traefik.http.middlewares.stats-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
-      # - "traefik.http.middlewares.stats-cors.headers.accessControlAllowCredentials=true"
-      # - "traefik.http.routers.stats.middlewares=stats-cors"
+      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowOriginList=*"
+      - "traefik.http.middlewares.stats-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
+      - "traefik.http.middlewares.stats-cors.headers.accessControlAllowCredentials=true"
+      - "traefik.http.routers.stats.middlewares=stats-cors"
     logging:
       driver: "json-file"
       options:
