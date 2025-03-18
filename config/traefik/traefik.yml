@@ -15,7 +15,7 @@ providers:
 certificatesResolvers:
   myresolver:
     acme:
-      email: "support@hbdscan.com"
+      email: "ahsandev2019@gmail.com"
       storage: "/letsencrypt/acme.json"
       httpChallenge:
         entryPoint: "web"
