@@ -9,14 +9,14 @@ services:
     labels:
       - "traefik.enable=true"
       # Listen on port 80 ("web") and match the Host rule
-      - "traefik.http.routers.beonescan-explorer.rule=Host(`haidar.fun`)"
+      - "traefik.http.routers.beonescan-explorer.rule=Host(`hbdscan.com`)"
       - "traefik.http.routers.beonescan-explorer.entryPoints=web"
       # Redirect HTTP -> HTTPS
       - "traefik.http.routers.beonescan-explorer.middlewares=beonescan-explorer-https-redirect"
       # Middleware that redirects scheme from HTTP to HTTPS
       - "traefik.http.middlewares.beonescan-explorer-https-redirect.redirectscheme.scheme=https"
       # Listen on port 443 ("websecure") and match the same Host
-      - "traefik.http.routers.beonescan-explorer-secure.rule=Host(`haidar.fun`)"
+      - "traefik.http.routers.beonescan-explorer-secure.rule=Host(`hbdscan.com`)"
       - "traefik.http.routers.beonescan-explorer-secure.entryPoints=websecure"
       - "traefik.http.routers.beonescan-explorer-secure.tls=true"
       # Use your ACME certificate resolver

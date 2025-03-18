@@ -44,11 +44,11 @@ services:
       - db:database
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`api.haidar.fun`)"
+      - "traefik.http.routers.backend.rule=Host(`api.hbdscan.com`)"
       - "traefik.http.routers.backend.entrypoints=websecure"
       - "traefik.http.routers.backend.tls=true"
       - "traefik.http.routers.backend.tls.certresolver=myresolver"
-      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowOriginList=https://haidar.fun"
+      - "traefik.http.middlewares.backend-cors.headers.accessControlAllowOriginList=https://hbdscan.com"
       - "traefik.http.middlewares.backend-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
       - "traefik.http.middlewares.backend-cors.headers.accessControlAllowCredentials=true"
       - "traefik.http.middlewares.backend-cors.headers.accessControlAllowHeaders=DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,x-csrf-token,updated-gas-oracle"
@@ -58,6 +58,8 @@ services:
       driver: "json-file"
       options:
         max-size: "50m"
+    ports:
+      - "4000:4000"
 
   visualizer:
     image: ghcr.io/blockscout/visualizer:v0.2.1
@@ -66,11 +68,11 @@ services:
       -  ../config/visualizer.env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.visualizer.rule=Host(`visualizer.haidar.fun`)"
+      - "traefik.http.routers.visualizer.rule=Host(`visualizer.hbdscan.com`)"
       - "traefik.http.routers.visualizer.entrypoints=websecure"
       - "traefik.http.routers.visualizer.tls=true"
       - "traefik.http.routers.visualizer.tls.certresolver=myresolver"
-      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowOriginList=https://haidar.fun"
+      - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowOriginList=https://hbdscan.com"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowCredentials=true"
       - "traefik.http.middlewares.visualizer-cors.headers.accessControlAllowHeaders=DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,x-csrf-token,updated-gas-oracle"
@@ -121,12 +123,12 @@ services:
       -  ../config/stats/stats.env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.stats.rule=Host(`stats.haidar.fun`)"
+      - "traefik.http.routers.stats.rule=Host(`stats.hbdscan.com`)"
       - "traefik.http.routers.stats.entrypoints=websecure"
       - "traefik.http.routers.stats.tls=true"
       - "traefik.http.routers.stats.tls.certresolver=myresolver"
       - "traefik.http.services.stats.loadbalancer.server.port=8050"
-      - "traefik.http.middlewares.stats-cors.headers.accessControlAllowOriginList=https://haidar.fun"
+      - "traefik.http.middlewares.stats-cors.headers.accessControlAllowOriginList=https://hbdscan.com"
       - "traefik.http.middlewares.stats-cors.headers.accessControlAllowMethods=PUT, GET, POST, OPTIONS, DELETE, PATCH"
       - "traefik.http.middlewares.stats-cors.headers.accessControlAllowHeaders=DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,x-csrf-token,updated-gas-oracle"
       - "traefik.http.middlewares.stats-cors.headers.accessControlAllowCredentials=true"

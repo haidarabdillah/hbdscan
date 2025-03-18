@@ -2,7 +2,7 @@ tls:
   certificatesResolvers:
     myresolver:
       acme:
-        email: "support@haidar.fun"
+        email: "support@hbdscan.com"
         storage: "/letsencrypt/acme.json"
         httpChallenge:
           entryPoint: "web"
